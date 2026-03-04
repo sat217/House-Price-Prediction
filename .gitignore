@@ -1,0 +1,30 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Models and data
+models/house_price_model.pkl
+data/
+
+# Exclude all CSV and Excel files (confidential data)
+*.csv
+*.xlsx
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Virtual environments
+venv/
+env/
+.env
+
+# Submission outputs
+submission.csv
+metrics.txt
+output.txt
+training_output.txt
+
+# OS files
+.DS_Store
+Thumbs.db
