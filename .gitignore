@@ -1,29 +1,7 @@
-# Byte-compiled / optimized / DLL files
 __pycache__/
-*.py[cod]
-*$py.class
-
-# Data folders
-data/
-
-# Exclude CSV and Excel files
-*.csv
-*.xlsx
-
-# Jupyter Notebook checkpoints
+*.pyc
 .ipynb_checkpoints/
-
-# Virtual environments
 venv/
-env/
 .env
-
-# Submission outputs
-submission.csv
-metrics.txt
-output.txt
-training_output.txt
-
-# OS files
 .DS_Store
 Thumbs.db

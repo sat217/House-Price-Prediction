@@ -1,93 +1,70 @@
+
 # House Price Prediction
 
-## Project Goal
-This project aims to predict house prices using the Kaggle House Prices dataset. The goal is to build a complete machine learning pipeline, from exploratory data analysis (EDA) and preprocessing to model training and evaluation, ultimately predicting the SalePrice of various houses.
+## Project Overview
+This project is a production-ready machine learning application for predicting house prices using the Ames Housing dataset. It features a complete ML pipeline and a Streamlit web app for interactive predictions.
 
-## Dataset
-The dataset utilized is the standard Kaggle House Prices dataset. 
-- `train.csv`: Used for training and validating the model.
-- `test.csv`: Used to generate final predictions.
-- `sample_submission.csv`: Example of the output prediction format.
+## Dataset Description
+- **train.csv**: Training data with house features and sale prices.
+- **test.csv**: Test data for generating predictions.
+- **sample_submission.csv**: Example submission format for Kaggle.
 
-## Preprocessing Steps
-1. **Missing Data Handling**:
-   - Numerical features: Missing values imputed using the median.
-   - Categorical features: Missing values imputed using the most frequent value (mode).
-2. **Encoding**:
-   - Categorical variables are encoded using `OneHotEncoder`.
-3. **Scaling**:
-   - Numerical variables are standardized using `StandardScaler`.
-4. **Pipeline**:
-   - All steps are encapsulated in a `scikit-learn` `ColumnTransformer` for reproducibility and clean code.
+## Machine Learning Pipeline
+- **Preprocessing**: Handles missing values, encodes categorical features, and scales numerical features.
+- **Model Training**: Trains multiple regression models and selects the best based on validation metrics.
+- **Model Saving**: The best model is saved as `models/house_price_model.pkl`.
+- **Prediction**: The app uses the trained model to predict house prices based on user input.
 
-## Models Used
-Three regression models were evaluated:
-1. **Linear Regression**
-2. **Random Forest Regressor**
-3. **Gradient Boosting Regressor**
+## Model Used
+- Gradient Boosting Regressor (best performance)
+- Other models evaluated: Linear Regression, Random Forest
 
-The performance is measured using Root Mean Squared Error (RMSE) and R² Score on a 20% validation split. The best performing model on the validation split is chosen to be trained on the full dataset.
+## Project Structure
+```
+house-price-prediction/
+├── models/
+│   └── house_price_model.pkl
+├── data/
+│   └── train.csv
+├── notebooks/
+│   └── house_price_prediction.ipynb
+├── src/
+│   ├── preprocess.py
+│   ├── train_model.py
+│   └── predict.py
+├── app.py
+├── requirements.txt
+├── README.md
+└── .gitignore
+```
 
-## Evaluation Results
-- **Linear Regression**: 
-  - RMSE: 29475.52
-  - R² Score: 0.8867
-- **Random Forest**:
-  - RMSE: 28432.11
-  - R² Score: 0.8946
-- **Gradient Boosting**: 
-  - RMSE: 26316.14
-  - R² Score: 0.9097
-
-**Best Model Selected**: Gradient Boosting (RMSE: 26316.14, R²: 0.9097)
-
-## How to Run the Project
-
-1. **Install Dependencies**:
+## Installation Instructions
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/sat217/House-Price-Prediction.git
+   cd House-Price-Prediction
+   ```
+2. Install dependencies:
    ```bash
    pip install -r requirements.txt
    ```
 
-2. **Generate EDA Notebook**:
-   ```bash
-   cd notebooks
-   python generate_notebook.py
-   ```
-   This will create `house_price_prediction.ipynb` which you can then explore using Jupyter.
+## Running Locally
+To launch the Streamlit app:
+```bash
+python -m streamlit run app.py
+```
 
-3. **Train the Model**:
-   ```bash
-   python src/train_model.py
-   ```
-   This script will pre-process data, evaluate all three models, select the best one, train it on the full training set, and save the binary model to `models/house_price_model.pkl`.
+## Streamlit Cloud Deployment
+- Main file: `app.py`
+- Branch: `main`
+- No path conflicts or dependency issues
 
-4. **Generate Predictions**:
-   ```bash
-   python src/predict.py
-   ```
-   This will output a `submission.csv` containing the `Id` and `SalePrice` predictions for the test set.
+## Example Usage
+1. Enter house features in the web app
+2. Click "Predict House Price"
+3. View the estimated price
 
-## Local Testing Instructions
-
-To test the project and web interface locally, follow these steps:
-
-1. Install dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-2. Train the model:
-   ```bash
-   python src/train_model.py
-   ```
-
-3. Generate test set predictions:
-   ```bash
-   python src/predict.py
-   ```
-
-4. Run the web interface:
-   ```bash
-   streamlit run app.py
-   ```
+## License
+MIT
 
