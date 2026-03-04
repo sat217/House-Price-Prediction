@@ -13,7 +13,6 @@ st.set_page_config(page_title="House Price Predictor", layout="centered")
 # -----------------------------------
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 MODEL_PATH = os.path.join(BASE_DIR, "models", "house_price_model.pkl")
-DATA_PATH = os.path.join(BASE_DIR, "data", "train.csv")
 
 
 # -----------------------------------
@@ -23,17 +22,9 @@ DATA_PATH = os.path.join(BASE_DIR, "data", "train.csv")
 def load_setup():
     try:
         model = joblib.load(MODEL_PATH)
-
-        df_template = (
-            pd.read_csv(DATA_PATH)
-            .iloc[[0]]
-            .drop(columns=["SalePrice", "Id"])
-        )
-
-        return model, df_template
-
+        return model
     except Exception as e:
-        st.error(f"Error loading model or data: {e}")
+        st.error(f"Error loading model: {e}")
         st.stop()
 
 
@@ -48,7 +39,7 @@ def main():
         "Enter a few property features below and the model will estimate the house price."
     )
 
-    model, df_template = load_setup()
+    model = load_setup()
 
     st.header("Property Features")
 
@@ -95,13 +86,13 @@ def main():
 
     if st.button("Predict House Price"):
 
-        input_data = df_template.copy()
-
-        input_data["OverallQual"] = overall_qual
-        input_data["GrLivArea"] = gr_liv_area
-        input_data["GarageCars"] = garage_cars
-        input_data["TotalBsmtSF"] = total_bsmt_sf
-        input_data["YearBuilt"] = year_built
+        input_data = pd.DataFrame([{
+            "OverallQual": overall_qual,
+            "GrLivArea": gr_liv_area,
+            "GarageCars": garage_cars,
+            "TotalBsmtSF": total_bsmt_sf,
+            "YearBuilt": year_built
+        }])
 
         try:
 

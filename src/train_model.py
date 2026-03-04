@@ -26,7 +26,8 @@ def main():
     df = pd.read_csv(train_path)
 
     # Separate features and target
-    X = df.drop(columns=["SalePrice", "Id"])
+    features = ["OverallQual", "GrLivArea", "GarageCars", "TotalBsmtSF", "YearBuilt"]
+    X = df[features]
     y = df["SalePrice"]
 
     # Split dataset
