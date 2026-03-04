@@ -3,11 +3,10 @@ __pycache__/
 *.py[cod]
 *$py.class
 
-# Models and data
-models/house_price_model.pkl
+# Data folders
 data/
 
-# Exclude all CSV and Excel files (confidential data)
+# Exclude CSV and Excel files
 *.csv
 *.xlsx
 
